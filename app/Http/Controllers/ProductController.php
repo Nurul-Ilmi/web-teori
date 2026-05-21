@@ -87,4 +87,21 @@ class ProductController extends Controller
             'message' => 'Produk berhasil dihapus'
         ], 200);
     }
+
+    public function show($id){
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data produk tidak ditemukan'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Detail produk berhasil diambil',
+            'data' => $product
+        ], 200);
+    }
 }
